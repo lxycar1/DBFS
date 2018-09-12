@@ -1,0 +1,26 @@
+bool vis[110];            // 记录已经走过的点，防止重复访问。
+
+void BFS(int root,int N)        // N个点的图，从root点开始搜索。
+{
+    queue <int> que;
+
+    memset(vis,0,sizeof(vis));    // 初始化。
+    vis[root]=1;
+    que.push(root);
+
+    int u,len;
+
+    while(!que.empty())
+    {
+        u=que.front();
+        que.pop();
+
+        len=E[u].size();
+        for(int i=0;i<len;++i)        // 找到和u相连的所有点，存在一个vector里面。
+            if(vis[E[u][i]]==0)
+            {
+                vis[E[u][i]]=1;
+                que.push(E[u][i]);
+            }
+    }
+}
