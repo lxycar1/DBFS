@@ -1,0 +1,16 @@
+需要一个栈，因为每次都是搜到之后不停的往下搜，符合先进先出。但是一般来说不用栈，而是直接通过函数的递归就行了。
+
+bool vis[110];
+int N;
+
+void DFS(int u)
+{
+    int len;
+
+    vis[u]=1;
+    len=E[u].size();
+
+    for(int i=0;i<len;++i)
+        if(vis[E[u][i]]==0)
+            DFS(E[u][i]);
+}
